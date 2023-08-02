@@ -1,0 +1,36 @@
+syntax = "proto3";
+package protein;
+
+enum Instruction {
+  Nop     = 0;
+  Nand    = 1;
+  Lshift  = 2;
+  Push8s0 = 3;
+  Pop8s0  = 4;
+  Push8s1 = 5;
+  Pop8s1  = 6;
+  Push8s2 = 7;
+  Pop8s2  = 8;
+  Call    = 9;
+  Print   = 10;
+  Read    = 11;
+  Exit    = 12;
+  Ret     = 13;
+  Xchg03  = 14;
+  Xchg13  = 15;
+  Xchg23  = 16;
+  Ifz     = 17;
+  Pushl8  = 18;
+}
+message Code {
+  message InnerLtable {
+    map<uint64, uint64> ltable = 1;
+  }
+
+  map<uint64, uint64>      ftable       = 1;
+  map<uint64, InnerLtable> ltables      = 2;
+  bytes                    initial_s0   = 3;
+  bytes                    initial_s1   = 4;
+  bytes                    initial_s2   = 5;
+  repeated Instruction     instructions = 6;
+}

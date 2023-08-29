@@ -177,3 +177,4 @@ pyrightconfig.json
 
 /build/
 *_pb2.py
+/.vim/
